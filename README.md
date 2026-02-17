@@ -21,8 +21,10 @@ Create an intelligent agent that leverages both local knowledge and web search t
 - Query local game database with semantic search
 - Perform web searches for current information
 - Maintain conversation state and memory
-- Return structured, contextual answers
-- Learn and store useful information for future queries
+- Return structured, contextual answers (JSON + natural language)
+- Learn and store useful information for future queries via long-term memory
+- Analyze public sentiment about games from web reviews
+- Detect currently trending games by category
 
 ## Getting Started
 
@@ -92,7 +94,8 @@ project/
 - **rag.py**: Retrieval-augmented generation pipeline
 - **llm.py**: OpenAI API interactions and model management
 - **memory.py**: Session memory and conversation context
-- **tooling.py**: Tool definitions (retrieve_game, evaluate_retrieval, game_web_search)
+- **tooling.py**: Tool definitions and helpers
+- **7 Agent Tools**: `retrieve_game`, `evaluate_retrieval`, `game_web_search`, `analyze_game_sentiment`, `detect_trending_games`, `remember_fact`, `recall_memory`
 - **documents.py**: Document processing and formatting
 - **parsers.py**: Response parsing and structuring
 - **evaluation.py**: Quality metrics and result evaluation
@@ -113,13 +116,17 @@ The `games/` directory contains 20 JSON files with comprehensive video game info
 - Build basic retrieval pipeline
 
 ### Part 2: Agentic AI System
-- Implement the three required tools:
-  - `retrieve_game`: Query vector database
-  - `evaluate_retrieval`: Quality assessment
-  - `game_web_search`: Web search integration
-- Build agent decision logic using Claude/GPT models
-- Implement conversation memory
-- Create structured output formatting
+- Implement 7 agent tools:
+  - `retrieve_game`: Query vector database for game information
+  - `evaluate_retrieval`: Assess quality of retrieved documents
+  - `game_web_search`: Search the web when internal knowledge is insufficient
+  - `analyze_game_sentiment`: Analyze public sentiment from game reviews and news
+  - `detect_trending_games`: Detect trending games by category (RPG, indie, PS5, etc.)
+  - `remember_fact`: Store key facts into long-term memory for future retrieval
+  - `recall_memory`: Search long-term memory for previously learned facts
+- Build agent decision logic using GPT models
+- Implement long-term memory with ChromaDB-backed storage
+- Create structured output formatting (Pydantic models with JSON output)
 
 ## Dependencies
 
